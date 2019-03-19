@@ -42,6 +42,10 @@
 \usepackage{xcolor}
 \definecolor{pos_parecer}{rgb}{0.89, 0.0, 0.13}
 
+\let\svthefootnote\thefootnote
+\newcommand\Cfootnote[2][black]{\def\thefootnote{\color{#1}\svthefootnote}%
+  \footnote{\color{#1}#2}}
+
 
 \renewenvironment{quote}
   {\small\onehalfspacing\list{}{\rightmargin=0cm \leftmargin=4cm}%
@@ -619,7 +623,7 @@ Neste documento descrevemos uma proposta para relacionar texto e fala na tipogra
     
     Os resultados desse experimento ainda estão em discussão, mas em especial sua parte quantitativa de modo geral nos pareceu muito difusa, motivo pelo qual vimos a necessidade de realizar um novo experimento, não previsto originalmente, a ser aplicado em março, desta vez em plataforma web. 
     
-    O foco será muito mais estreito: apresentaremos o áudio da frase lida e duas imagens, uma com modulações tipográficas correspondentes ao som, outra com modulações tipográficas \textbf{não} correspondentes. Usaremos duas features — \textit{pitch} e amplitude média\footnote{Percebemos que, em nossa base de áudio, duração tem uma forte correlação negativa com \textit{pitch} e, portanto, tende a criar padrões visuais que podem gerar à confusão de uma feature com a outra.} —, aplicadas, uma \textbf{ou} a outra sempre no eixo \textit{weight}, ou grossura da letra\footnote{De longe o mais citado como percebido nas entrevistas.}. 
+    O foco será muito mais estreito: apresentaremos o áudio da frase lida e duas imagens, uma com modulações tipográficas correspondentes ao som, outra com modulações tipográficas \textbf{não} correspondentes. Usaremos duas features — \textit{pitch} e amplitude média\Cfootnote[pos_parecer]{Percebemos que, em nossa base de áudio, duração tem uma forte correlação negativa com \textit{pitch} e, portanto, tende a criar padrões visuais que podem gerar à confusão de uma feature com a outra.} —, aplicadas, uma \textbf{ou} a outra sempre no eixo \textit{weight}, ou grossura da letra\Cfootnote[pos_parecer]{De longe o mais citado como percebido nas entrevistas.}. 
     
     Imaginamos com isso conseguir medir quão efetiva é nossa proposta de codificação visual da prosódia, mas também índices relativos de performance entre as duas features consideradas e entre cada uma das emoções consideradas — afinal, é possível que certos tipos de expressão sejam melhor compreendidos por nossa abordagem do que outros.
     
@@ -631,9 +635,9 @@ Neste documento descrevemos uma proposta para relacionar texto e fala na tipogra
     
     Atualmente, estão prontos os scripts Python que fazem a extração e processamento das features acústicas a partir de uma base de arquivos de áudio previamente preparada, assim como os scripts que, em seguida, traduzem essas características em modulações nos eixos de \textit{Variable Fonts}, aplicando-as às frases que geraram os áudios.
     
-    As três features consideradas são (1) frequência fundamental, calculada usando o método \textsc{swipe} disponibilizado na biblioteca \textit{pysptk}; (2) amplitude média, usando o \textit{root mean square} de cada sílaba; e (3) duração por sílaba, extraída manualmente\footnote{Como previsto no projeto, a extração automática será explorada na última etapa através do algoritmo de alinhamento disponibilizado pela biblioteca \textit{aeneas}. Já foi feito um protótipo que, através dela, extraiu os inícios e fins de cada \textbf{frase} nos áudios usados na primeira avaliação, mas ainda é preciso refinar a abordagem para descer ao nível da palavra ou, idealmente, sílaba.}.
+    As três features consideradas são (1) frequência fundamental, calculada usando o método \textsc{swipe} disponibilizado na biblioteca \textit{pysptk}; (2) amplitude média, usando o \textit{root mean square} de cada sílaba; e (3) duração por sílaba, extraída manualmente\Cfootnote[pos_parecer]{Como previsto no projeto, a extração automática será explorada na última etapa através do algoritmo de alinhamento disponibilizado pela biblioteca \textit{aeneas}. Já foi feito um protótipo que, através dela, extraiu os inícios e fins de cada \textbf{frase} nos áudios usados na primeira avaliação, mas ainda é preciso refinar a abordagem para descer ao nível da palavra ou, idealmente, sílaba.}.
     
-    Com as features extraídas, o software normaliza os valores a partir de máximos e mínimos considerando o contexto da frase em si e da frase em relação a todas as demais, a partir do que são gerados os valores a se aplicar nos eixos tipográficos. Estes, assim com as features em seus valores brutos e já processados, são salvos em formato \textsc{json}, permitindo futuros usos na web\footnote{Como já mencionado, as \textit{Variable Fonts} já estão implementadas nos principais navegadores em uso atualmente.}, mas também importação no software que escrevemos que gera os cartões para aplicação do \textit{Card Sort}.
+    Com as features extraídas, o software normaliza os valores a partir de máximos e mínimos considerando o contexto da frase em si e da frase em relação a todas as demais, a partir do que são gerados os valores a se aplicar nos eixos tipográficos. Estes, assim com as features em seus valores brutos e já processados, são salvos em formato \textsc{json}, permitindo futuros usos na web\Cfootnote[pos_parecer]{Como já mencionado, as \textit{Variable Fonts} já estão implementadas nos principais navegadores em uso atualmente.}, mas também importação no software que escrevemos que gera os cartões para aplicação do \textit{Card Sort}.
     
     Este foi escrito em Python no ambiente DrawBot, software muito usado na comunidade de \textit{Design Digital Generativo} e que, além de implementar tecnologias tipográficas de ponta, possui uma série de facilidades para gerar arquivos para impressão — em nosso caso, cartões em tamanho A5, cada qual com uma frase.
     
