@@ -626,7 +626,7 @@ Neste documento descrevemos uma proposta para relacionar texto e fala na tipogra
     \section{Sobre a primeira avaliação}
     \label{sec:n_avaliacao_1}
 
-    Como previsto no projeto, em meados de novembro realizamos uma avaliação do tipo \textit{Card Sort} com frases visualmente modificadas de acordo com a prosódia na voz de uma atriz que as lera previamente. 
+    Como previsto no projeto original, em meados de novembro de 2018 realizamos uma avaliação do tipo \textit{Card Sort} com frases visualmente modificadas de acordo com a prosódia na voz de uma atriz que as lera previamente. 
     
     O teste foi feito em três etapas: alunos de design da Unicamp, alunos de engenharia da Unicamp e alunos de design da \textsc{faal} Limeira. No total, testamos 34 alunos, cada qual ordenando 24 cartões (6 emoções por cada uma das 4 frases escolhidas).
     
@@ -653,9 +653,9 @@ Neste documento descrevemos uma proposta para relacionar texto e fala na tipogra
     
     O foco será muito mais estreito: apresentaremos o áudio da frase lida e duas imagens, uma com modulações tipográficas correspondentes ao som, outra com modulações tipográficas \textbf{não} correspondentes. Usaremos duas features — \textit{pitch} e amplitude média\Cfootnote[pos_parecer]{Percebemos que, em nossa base de áudio, duração tem uma forte correlação negativa com \textit{pitch} e, portanto, tende a criar padrões visuais que podem gerar à confusão de uma feature com a outra.} —, aplicadas, uma \textbf{ou} a outra sempre no eixo \textit{weight}, ou grossura da letra\Cfootnote[pos_parecer]{De longe o mais citado como percebido nas entrevistas.}. 
     
-    Imaginamos com isso conseguir medir quão efetiva é nossa proposta de codificação visual da prosódia, mas também índices relativos de performance entre as duas features consideradas e entre cada uma das emoções consideradas — afinal, é possível que certos tipos de expressão sejam melhor compreendidos por nossa abordagem do que outros.
+    Imaginamos com isso conseguir medir quão efetiva é nossa proposta de codificação visual da prosódia, mas também índices relativos de performance entre as duas features consideradas e entre cada uma das emoções consideradas — afinal, é possível que certas emoções estejam melhor representadas em nossa abordagem do que outras.
     
-    O sistema on-line de avaliação já está pronto. No momento em que escrevemos, aguardamos sua aprovação no Comitê de Ética em Pesquisa (\textsc{cep}) da Universidade Estadual de Campinas (Unicamp). Em paralelo, está sendo feita a preparação dos dados e textos explicativos, além da lista de pessoas a quem serão enviados os convites para participar — além do sistema da \textsc{dac} Unicamp, que distribui testes como o nosso para alunos de pós-graduação, convidaremos outros profissionais e alunos do design.
+    O sistema on-line de avaliação já está pronto. No momento em que escrevemos, aguardamos aprovação de nosso projeto no Comitê de Ética em Pesquisa (\textsc{cep}) da Unicamp. Em paralelo, está sendo feita a preparação dos dados e textos explicativos, além da lista de pessoas a quem serão enviados os convites para participar — além do sistema da \textsc{dac} Unicamp, que distribui testes como o nosso para alunos de pós-graduação, convidaremos outros profissionais e alunos do design.
 
 
 
@@ -666,9 +666,9 @@ Neste documento descrevemos uma proposta para relacionar texto e fala na tipogra
     
     As três features consideradas são (1) frequência fundamental, calculada usando o método \textsc{swipe} disponibilizado na biblioteca \textit{pysptk}; (2) amplitude média, usando o \textit{root mean square} de cada sílaba; e (3) duração por sílaba, extraída manualmente\Cfootnote[pos_parecer]{Como previsto no projeto, a extração automática será explorada na última etapa através do algoritmo de alinhamento disponibilizado pela biblioteca \textit{aeneas}. Já foi feito um protótipo que, através dela, extraiu os inícios e fins de cada \textbf{frase} nos áudios usados na primeira avaliação, mas ainda é preciso refinar a abordagem para descer ao nível da palavra ou, idealmente, sílaba.}.
     
-    Com as features extraídas, o software normaliza os valores a partir de máximos e mínimos considerando o contexto da frase em si e da frase em relação a todas as demais, a partir do que são gerados os valores a se aplicar nos eixos tipográficos. Estes, assim com as features em seus valores brutos e já processados, são salvos em formato \textsc{json}, permitindo futuros usos na web\Cfootnote[pos_parecer]{Como já mencionado, as \textit{Variable Fonts} já estão implementadas nos principais navegadores em uso atualmente.}, mas também importação no software que escrevemos que gera os cartões para aplicação do \textit{Card Sort}.
+    Com as features extraídas, o software normaliza os valores a partir de máximos e mínimos considerando o contexto da frase em si e da frase em relação a todas as demais, a partir do que são gerados os valores a se aplicar nos eixos tipográficos. Estes, assim com as features em seus valores brutos e já processados, são salvos em formato \textsc{json}, permitindo futuros usos na web\Cfootnote[pos_parecer]{Como já mencionado, as \textit{Variable Fonts} já estão implementadas nos principais navegadores em uso atualmente.}, mas também importação no software que escrevemos que gera os \textsc{pdf}s para impressão dos cartões para aplicação do \textit{Card Sort}.
     
-    Este foi escrito em Python no ambiente DrawBot, software muito usado na comunidade de \textit{Design Digital Generativo} e que, além de implementar tecnologias tipográficas de ponta, possui uma série de facilidades para gerar arquivos para impressão — em nosso caso, cartões em tamanho A5, cada qual com uma frase.
+    Este último foi escrito em Python no ambiente DrawBot, software muito usado na comunidade de \textit{Design Digital Generativo} e que, além de implementar tecnologias tipográficas de ponta, possui uma série de facilidades para gerar arquivos para impressão — em nosso caso, cartões em tamanho A5, cada qual com uma frase.
     
     \captionsetup[figure]{font={color=pos_parecer}}
     
